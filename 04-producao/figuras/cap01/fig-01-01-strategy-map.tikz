@@ -1,0 +1,173 @@
+% ============================================================
+% FIGURA 1.1 — STRATEGY MAP INTEGRADO (BSC + OKR + KPIs)
+% Capítulo 1 — Planejamento Estratégico & Análise de Ambiente
+% ============================================================
+% Compilação standalone: pdflatex -shell-escape fig-01-01-strategy-map.tikz
+% ============================================================
+
+\documentclass[tikz,border=10pt]{standalone}
+\input{../estilo-comum.tikz}
+
+\begin{document}
+\begin{tikzpicture}[
+  node distance=1.2cm and 2.5cm,
+  every node/.style={font=\sffamily}
+]
+
+% ============================================================
+% TÍTULO DA FIGURA
+% ============================================================
+\node[tituloFigura, anchor=north] (titulo) at (0, 7.5) 
+  {Strategy Map Integrado — BSC + OKR + KPIs};
+\node[subtituloFigura, below=2pt of titulo] 
+  {Perspectivas BSC conectadas a OKRs trimestrais e KPIs financeiros/não-financeiros};
+
+% ============================================================
+% DEFINIÇÃO DE POSIÇÕES (COORDENADAS)
+% ============================================================
+% Eixo Y: perspectivas BSC
+\def\yFin{5.5}
+\def\yCli{3.0}
+\def\yProc{0.5}
+\def\yApr{-2.0}
+\def\yObj{-4.5}
+\def\yOKR{-6.5}
+
+% Eixo X: posições horizontais
+\def\xLeft{-7}
+\def\xMid{0}
+\def\xRight{7}
+
+% ============================================================
+% PERSPECTIVA FINANCEIRA (TOPO)
+% ============================================================
+\node[caixaheader, minimum width=14cm] (finHeader) at (\xMid, \yFin+0.8) 
+  {PERSPECTIVA FINANCEIRA};
+
+\node[caixaKPIgreen, minimum width=4.5cm] (kpiROE) at (\xLeft, \yFin) 
+  {ROE \\ \textbf{22\%} \\ \textit{(Meta: >20\%)}};
+\node[caixaKPIgreen, minimum width=4.5cm] (kpiFCF) at (\xMid, \yFin) 
+  {FCF Yield \\ \textbf{8\%} \\ \textit{(Meta: >6\%)}};
+\node[caixaKPIgreen, minimum width=4.5cm] (kpiCapex) at (\xRight, \yFin) 
+  {Capex/Receita \\ \textbf{6\%} \\ \textit{(Meta: <8\%)}};
+
+% Setas causais Financeira → Clientes
+\draw[setaforte] (kpiROE.south) -- ++(0,-0.3) -| (\xLeft, \yCli+0.6);
+\draw[setaforte] (kpiFCF.south) -- ++(0,-0.3) -| (\xMid, \yCli+0.6);
+\draw[setaforte] (kpiCapex.south) -- ++(0,-0.3) -| (\xRight, \yCli+0.6);
+
+% ============================================================
+% PERSPECTIVA CLIENTES
+% ============================================================
+\node[caixaheader, minimum width=14cm] (cliHeader) at (\xMid, \yCli+1.3) 
+  {PERSPECTIVA CLIENTES};
+
+\node[caixa, minimum width=4.5cm] (kpiNPS) at (\xLeft, \yCli) 
+  {NPS \\ \textbf{72} \\ \textit{(Meta: >70)}};
+\node[caixa, minimum width=4.5cm] (kpiShare) at (\xMid, \yCli) 
+  {Share of Wallet \\ \textbf{35\%} \\ \textit{(Meta: >30\%)}};
+\node[caixa, minimum width=4.5cm] (kpiChurn) at (\xRight, \yCli) 
+  {Churn \\ \textbf{<5\%} \\ \textit{(Meta: <5\%)}};
+
+% Setas causais Clientes → Processos
+\draw[setaforte] (kpiNPS.south) -- ++(0,-0.3) -| (\xLeft, \yProc+0.6);
+\draw[setaforte] (kpiShare.south) -- ++(0,-0.3) -| (\xMid, \yProc+0.6);
+\draw[setaforte] (kpiChurn.south) -- ++(0,-0.3) -| (\xRight, \yProc+0.6);
+
+% ============================================================
+% PERSPECTIVA PROCESSOS
+% ============================================================
+\node[caixaheader, minimum width=14cm] (procHeader) at (\xMid, \yProc+1.3) 
+  {PERSPECTIVA PROCESSOS INTERNOS};
+
+\node[caixa, minimum width=4.5cm] (kpiOTIF) at (\xLeft, \yProc) 
+  {OTIF \\ \textbf{98\%} \\ \textit{(Meta: >95\%)}};
+\node[caixa, minimum width=4.5cm] (kpiLeadTime) at (\xMid, \yProc) 
+  {Lead Time \\ \textbf{-30\%} \\ \textit{(Meta: -25\%)}};
+\node[caixa, minimum width=4.5cm] (kpiCAC) at (\xRight, \yProc) 
+  {CAC Payback \\ \textbf{6 meses} \\ \textit{(Meta: <8m)}};
+
+% Setas causais Processos → Aprendizado
+\draw[setaforte] (kpiOTIF.south) -- ++(0,-0.3) -| (\xLeft, \yApr+0.6);
+\draw[setaforte] (kpiLeadTime.south) -- ++(0,-0.3) -| (\xMid, \yApr+0.6);
+\draw[setaforte] (kpiCAC.south) -- ++(0,-0.3) -| (\xRight, \yApr+0.6);
+
+% ============================================================
+% PERSPECTIVA APRENDIZADO E CRESCIMENTO (BASE)
+% ============================================================
+\node[caixaheader, minimum width=14cm] (aprHeader) at (\xMid, \yApr+1.3) 
+  {PERSPECTIVA APRENDIZADO E CRESCIMENTO};
+
+\node[caixa, minimum width=4.5cm] (kpiIA) at (\xLeft, \yApr) 
+  {Capacidade IA/1000 FTE \\ \textbf{12} \\ \textit{(Meta: >10)}};
+\node[caixa, minimum width=4.5cm] (kpiOKR) at (\xMid, \yApr) 
+  {\% Colaboradores c/ OKR \\ \textbf{94\%} \\ \textit{(Meta: >90\%)}};
+\node[caixa, minimum width=4.5cm] (kpiPatentes) at (\xRight, \yApr) 
+  {Patentes/Ano \\ \textbf{45} \\ \textit{(Meta: >40)}};
+
+% ============================================================
+% OBJETIVO ESTRATÉGICO CENTRAL (CONECTA TODAS PERSPECTIVAS)
+% ============================================================
+\node[caixadestaque, rounded corners=8pt, minimum width=10cm, minimum height=1.5cm] 
+  (objEstrategico) at (\xMid, \yObj) 
+  {\textbf{OBJETIVO ESTRATÉGICO 2025}\\
+  \textit{``Líder em ecossistema digital brasileiro''}};
+
+% Conexões das 4 perspectivas ao objetivo central
+\foreach \persp in {finHeader, cliHeader, procHeader, aprHeader} {
+  \draw[setafraca, densely dotted] (\persp.south) -- ++(0,-0.2) -| (objEstrategico.north);
+}
+
+% ============================================================
+% OKR CASCADE (ABAIXO DO OBJETIVO)
+% ============================================================
+\node[caixaheader, minimum width=14cm] (okrHeader) at (\xMid, \yOKR+1.0) 
+  {OKR CASCADE TRIMESTRAL (ALINHAMENTO VERTICAL)};
+
+% OKR CEO
+\node[caixadestaque, minimum width=5.5cm, minimum height=2.2cm] (okrCEO) at (\xLeft, \yOKR-0.5) 
+  {\textbf{OKR CEO (Q1'25)}\\
+  \textit{O:} Acelerar ecossistema digital\\
+  \textit{KR1:} GMV R\$ 90 bi\\
+  \textit{KR2:} FCF R\$ 4,5 bi\\
+  \textit{KR3:} ROIC > WACC};
+
+% OKR CTO
+\node[caixa, minimum width=5.5cm, minimum height=2.2cm] (okrCTO) at (\xMid, \yOKR-0.5) 
+  {\textbf{OKR CTO (Q1'25)}\\
+  \textit{O:} Plataforma IA escalável\\
+  \textit{KR1:} Deploy IA 100\% squads\\
+  \textit{KR2:} Uptime 99,99\%\\
+  \textit{KR3:} MTTR < 15 min};
+
+% OKR CMO
+\node[caixa, minimum width=5.5cm, minimum height=2.2cm] (okrCMO) at (\xRight, \yOKR-0.5) 
+  {\textbf{OKR CMO (Q1'25)}\\
+  \textit{O:} Aquisição rentável\\
+  \textit{KR1:} CAC -20\%\\
+  \textit{KR2:} NPS +5 pts\\
+  \textit{KR3:} MQL→SQL 25\%};
+
+% Conexão Objetivo → OKRs
+\draw[setaforte] (objEstrategico.south) -- ++(0,-0.3) -| (okrCEO.north);
+\draw[setaforte] (objEstrategico.south) -- ++(0,-0.3) -| (okrCTO.north);
+\draw[setaforte] (objEstrategico.south) -- ++(0,-0.3) -| (okrCMO.north);
+
+% ============================================================
+% LEGENDA DE CORES (STATUS)
+% ============================================================
+\node[caixaKPIgreen, minimum width=2.5cm, anchor=north east] (legGreen) at (8.5, -9.5) 
+  {\textcolor{kpigreen}{\textbf{■}} Verde = On-track};
+\node[caixaKPIorange, minimum width=2.5cm, right=0.5cm of legGreen] (legYellow) 
+  {\textcolor{kpiorange}{\textbf{■}} Amarelo = Atenção};
+\node[caixaKPIred, minimum width=2.5cm, right=0.5cm of legYellow] (legRed) 
+  {\textcolor{kpired}{\textbf{■}} Vermelho = Off-track};
+
+% ============================================================
+% FONTE / NOTA RODAPÉ
+% ============================================================
+\node[fonteNota, anchor=south west, text width=15cm] at (-8.5, -10.2) 
+  {Fonte: Kaplan \& Norton (1996, 2001, 2008); Doerr (2018); Grove (1983); Adaptado para Magalu/Nubank/Weg 2024. Cores: Verde = on-track, Amarelo = atenção, Vermelho = off-track (atualização mensal).};
+
+\end{tikzpicture}
+\end{document}

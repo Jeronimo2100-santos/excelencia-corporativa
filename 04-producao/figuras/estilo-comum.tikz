@@ -1,0 +1,429 @@
+% ============================================================
+% ESTILO VISUAL COMUM — FIGURAS DO LIVRO
+% ============================================================
+% Incluir em cada figura TikZ com: \input{../estilo-comum.tikz}
+% Cores, estilos de nó, setas, bibliotecas TikZ
+% ============================================================
+
+% Bibliotecas TikZ necessárias
+\usetikzlibrary{
+    calc, positioning, shapes.geometric, arrows.meta,
+    shadows, patterns, fit, backgrounds, matrix,
+    chains, scopes, decorations.pathreplacing,
+    decorations.markings, shapes.symbols, shapes.multipart
+}
+
+% ============================================================
+% PALETA DE CORES DA MARCA
+% ============================================================
+\definecolor{ecnavy}{RGB}{12,28,58}       % Azul corporativo escuro (primária)
+\definecolor{ecgold}{RGB}{205,165,42}     % Dourado (destaque/valores)
+\definecolor{ecdark}{RGB}{8,18,38}        % Quase preto (fundo capa)
+\definecolor{eclight}{RGB}{245,243,238}   % Off-white (fundo caixas claras)
+\definecolor{ecteal}{RGB}{0,128,115}      % Verde-azulado (subtítulos/secundária)
+\definecolor{eccoral}{RGB}{230,95,70}     % Coral (alertas/valores negativos)
+\definecolor{ecgray}{RGB}{120,120,120}    % Cinza médio (textos secundários)
+\definecolor{eclightgray}{RGB}{230,230,230} % Cinza claro (fundos alternados)
+
+% Cores semânticas para KPIs/status
+\definecolor{kpigreen}{RGB}{0,150,80}     % Verde KPI positivo
+\definecolor{kpiorange}{RGB}{230,150,0}   % Laranja KPI atenção
+\definecolor{kpired}{RGB}{200,50,50}      % Vermelho KPI crítico
+\definecolor{kpiblue}{RGB}{30,100,200}    % Azul KPI neutro
+
+% ============================================================
+% ESTILOS DE NÓ COMUNS
+% ============================================================
+
+% Caixa padrão (retângulo arredondado)
+\tikzset{
+  caixa/.style={
+    rectangle, 
+    draw=ecnavy, 
+    fill=white, 
+    rounded corners=4pt, 
+    minimum height=1.2cm, 
+    minimum width=2.5cm,
+    text width=3cm, 
+    align=center, 
+    font=\small\sffamily,
+    inner sep=6pt,
+    drop shadow={opacity=0.15, shadow xshift=1pt, shadow yshift=-1pt}
+  },
+  
+  % Caixa de destaque (fundo dourado claro)
+  caixadestaque/.style={
+    caixa, 
+    fill=ecgold!15, 
+    draw=ecgold, 
+    thick,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Caixa de alerta/negativo
+  caixaalerta/.style={
+    caixa, 
+    fill=eccoral!15, 
+    draw=eccoral, 
+    thick,
+    font=\small\sffamily
+  },
+  
+  % Caixa KPI verde
+  caixaKPIgreen/.style={
+    caixa, 
+    fill=kpigreen!15, 
+    draw=kpigreen, 
+    thick,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Caixa KPI laranja
+  caixaKPIorange/.style={
+    caixa, 
+    fill=kpiorange!15, 
+    draw=kpiorange, 
+    thick,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Caixa KPI vermelho
+  caixaKPIred/.style={
+    caixa, 
+    fill=kpired!15, 
+    draw=kpired, 
+    thick,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Caixa header (título de seção)
+  caixaheader/.style={
+    rectangle,
+    draw=ecnavy,
+    fill=ecnavy,
+    rounded corners=4pt,
+    minimum height=1cm,
+    text width=4cm,
+    align=center,
+    font=\small\bfseries\sffamily,
+    text=white,
+    inner sep=4pt
+  },
+  
+  % Caixa subtitle
+  caixasub/.style={
+    rectangle,
+    draw=ecteal,
+    fill=ecteal!10,
+    rounded corners=3pt,
+    minimum height=0.8cm,
+    text width=3.5cm,
+    align=center,
+    font=\small\sffamily,
+    text=ecteal,
+    inner sep=3pt
+  }
+}
+
+% ============================================================
+% ESTILOS DE SETAS E LINHAS
+% ============================================================
+
+\tikzset{
+  % Seta principal forte
+  setaforte/.style={
+    ->, 
+    >=Stealth, 
+    line width=1.5pt, 
+    color=ecnavy,
+    shorten >=3pt, 
+    shorten <=3pt
+  },
+  
+  % Seta fraca/secundária
+  setafraca/.style={
+    ->, 
+    >=Stealth, 
+    line width=0.8pt, 
+    color=ecnavy!60,
+    shorten >=2pt, 
+    shorten <=2pt
+  },
+  
+  % Seta tracejada (relacionamento indireto)
+  setatracejada/.style={
+    ->, 
+    >=Stealth, 
+    line width=1pt, 
+    color=ecnavy!40,
+    densely dashed,
+    shorten >=2pt, 
+    shorten <=2pt
+  },
+  
+  % Seta bidirecional
+  setabidi/.style={
+    <->, 
+    >=Stealth, 
+    line width=1pt, 
+    color=ecteal,
+    shorten >=2pt, 
+    shorten <=2pt
+  },
+  
+  % Linha de correlação (telhado QFD)
+  linhaCorrelacao/.style={
+    line width=0.6pt, 
+    color=ecgray,
+    shorten >=1pt, 
+    shorten <=1pt
+  },
+  
+  % Linha forte de correlação
+  linhaCorrelacaoForte/.style={
+    line width=1.2pt, 
+    color=ecnavy,
+    shorten >=1pt, 
+    shorten <=1pt
+  },
+  
+  % Conector curvo (para fluxos complexos)
+  conectorCurvo/.style={
+    ->, 
+    >=Stealth, 
+    line width=1pt, 
+    color=ecnavy,
+    bend left=15,
+    shorten >=3pt, 
+    shorten <=3pt
+  }
+}
+
+% ============================================================
+% ESTILOS DE TEXTO E TÍTULOS
+% ============================================================
+
+\tikzset{
+  % Título principal da figura
+  tituloFigura/.style={
+    font=\bfseries\sffamily\Large, 
+    color=ecnavy,
+    align=center
+  },
+  
+  % Subtítulo da figura
+  subtituloFigura/.style={
+    font=\sffamily\normalsize, 
+    color=ecteal,
+    align=center
+  },
+  
+  % Legenda de eixo
+  eixoLabel/.style={
+    font=\small\sffamily, 
+    color=ecnavy,
+    anchor=center
+  },
+  
+  % Rótulo de nó (valores KPI)
+  kpiLabel/.style={
+    font=\bfseries\sffamily\small, 
+    color=ecnavy
+  },
+  
+  % Valor KPI grande
+  kpiValue/.style={
+    font=\bfseries\sffamily\large, 
+    color=ecgold
+  },
+  
+  % Valor KPI verde
+  kpiValueGreen/.style={
+    font=\bfseries\sffamily\large, 
+    color=kpigreen
+  },
+  
+  % Valor KPI vermelho
+  kpiValueRed/.style={
+    font=\bfseries\sffamily\large, 
+    color=kpired
+  },
+  
+  % Nota de rodapé / fonte
+  fonteNota/.style={
+    font=\tiny\sffamily, 
+    color=ecgray,
+    align=left
+  },
+  
+  % Texto explicativo pequeno
+  explicativo/.style={
+    font=\footnotesize\sffamily, 
+    color=ecnavy!80,
+    align=left
+  }
+}
+
+% ============================================================
+% ESTILOS PARA MATRIZES E TABELAS TIKZ
+% ============================================================
+
+\tikzset{
+  % Célula de matriz padrão
+  matrixCell/.style={
+    anchor=center,
+    minimum height=0.8cm,
+    text width=2.2cm,
+    align=center,
+    font=\small\sffamily,
+    inner sep=3pt
+  },
+  
+  % Cabeçalho de matriz
+  matrixHeader/.style={
+    matrixCell,
+    fill=ecnavy,
+    text=white,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Célula destacada (valor alto)
+  matrixHigh/.style={
+    matrixCell,
+    fill=ecgold!20,
+    draw=ecgold,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Célula crítica (vermelho)
+  matrixCritical/.style={
+    matrixCell,
+    fill=kpired!20,
+    draw=kpired,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Célula positiva (verde)
+  matrixPositive/.style={
+    matrixCell,
+    fill=kpigreen!20,
+    draw=kpigreen,
+    font=\small\bfseries\sffamily
+  },
+  
+  % Linha divisória de tabela
+  tableRule/.style={
+    line width=0.8pt, 
+    color=ecnavy
+  },
+  
+  % Linha fina de tabela
+  tableRuleThin/.style={
+    line width=0.4pt, 
+    color=ecgray!50
+  }
+}
+
+% ============================================================
+% ESTILOS PARA GRÁFICOS PGFPLOTS
+% ============================================================
+
+% Definir ciclo de cores para gráficos de linha/barras
+\pgfplotscreateplotcyclelist{ecCycle}{
+  {ecnavy, mark=*, mark size=3pt, line width=1.5pt},
+  {ecgold, mark=square*, mark size=3pt, line width=1.5pt},
+  {ecteal, mark=triangle*, mark size=3pt, line width=1.5pt},
+  {eccoral, mark=diamond*, mark size=3pt, line width=1.5pt},
+  {ecnavy!60, mark=*, mark size=3pt, line width=1.5pt, dashed},
+  {ecgold!70!black, mark=square*, mark size=3pt, line width=1.5pt, dashed}
+}
+
+% Estilo base para eixos pgfplots
+\pgfplotsset{
+  ecAxisStyle/.style={
+    width=\textwidth,
+    height=0.5\textwidth,
+    axis lines=left,
+    tick label style={font=\footnotesize\sffamily, color=ecnavy},
+    label style={font=\small\sffamily, color=ecnavy},
+    title style={font=\bfseries\sffamily, color=ecnavy},
+    legend style={
+      font=\footnotesize\sffamily,
+      color=ecnavy,
+      draw=ecnavy!30,
+      fill=white,
+      cells={anchor=west}
+    },
+    grid=major,
+    grid style={line width=0.3pt, color=ecgray!30},
+    minor grid style={line width=0.15pt, color=ecgray!15},
+    cycle list name=ecCycle
+  },
+  
+  % Estilo para barras
+  ecBarStyle/.style={
+    ybar,
+    bar width=0.6cm,
+    enlarge x limits=0.15,
+    ecAxisStyle,
+    nodes near coords={
+      \pgfmathprintnumber[precision=1]{\pgfplotspointmeta}
+    },
+    nodes near coords style={
+      font=\tiny\sffamily, 
+      color=ecnavy,
+      anchor=south
+    }
+  },
+  
+  % Estilo para heatmap
+  ecHeatmapStyle/.style={
+    view={0}{90},
+    colormap={ecHeat}{
+      color(0)=(eclightgray)
+      color(1000)=(ecnavy)
+      color(2000)=(ecgold)
+      color(3000)=(eccoral)
+    },
+    colorbar sampled,
+    colorbar style={
+      yticklabel style={font=\tiny\sffamily, color=ecnavy},
+      ylabel style={font=\small\sffamily, color=ecnavy}
+    }
+  }
+}
+
+% ============================================================
+% COMANDOS AUXILIARES
+% ============================================================
+
+% Caixa com título + conteúdo (para legendas complexas)
+\newcommand{\caixaComTitulo}[3][]{
+  \node[caixaheader, #1] (titulo#2) {#2};
+  \node[caixa, below=2pt of titulo#2, #1] (conteudo#2) {#3};
+}
+
+% Badge de status (verde/amarelo/vermelho)
+\newcommand{\badgeStatus}[2]{
+  \node[caixaKPI#1, minimum width=2cm] {#2};
+}
+
+% KPI em destaque (valor + label)
+\newcommand{\kpiDestacado}[3]{
+  \node[kpiValue#1] (kpiVal#2) {#2};
+  \node[kpiLabel, below=1pt of kpiVal#2] {#3};
+}
+
+% ============================================================
+% FIM DO ARQUIVO ESTILO-COMUM.TIKZ
+% ============================================================
+% 
+% USO EM FIGURAS:
+% \documentclass[tikz,border=5pt]{standalone}
+% \input{../estilo-comum.tikz}
+% \begin{document}
+% \begin{tikzpicture}
+%   ... código da figura usando estilos acima ...
+% \end{tikzpicture}
+% \end{document}
+% ============================================================

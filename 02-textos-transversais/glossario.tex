@@ -1,0 +1,94 @@
+% ============================================================
+% GLOSSÁRIO
+% ============================================================
+\begin{glossario}
+
+\item[\textbf{Agência (Teoria da)}] Visão de que gestores (agentes) podem agir em interesse próprio em detrimento dos acionistas (principais), gerando custos de agência (monitoramento, bonding, perda residual). Jensen & Meckling (1976).
+
+\item[\textbf{Antifrágil}] Sistema que não apenas resiste a choques, mas \textit{melhora} com volatilidade, estresse e desordem (Taleb, 2012). Contrário de frágil (quebra) e robusto (resiste). Características: redundância, opcionalidade, estratégia barbell.
+
+\item[\textbf{Apetite a Risco (Risk Appetite)}] Quantidade e tipo de risco que uma organização está disposta a aceitar na busca de seus objetivos. Expresso em declaração formal (RAS) por categoria (financeiro, reputacional, compliance, estratégico, operacional, cibernético) com KRI, limites hard/soft e governança de revisão.
+
+\item[\textbf{Balanced Scorecard (BSC)}] Framework de Kaplan & Norton (1992/1996) que traduz estratégia em 4 perspectivas (Financeira, Clientes, Processos Internos, Aprendizado e Crescimento) com Objetivos, Medidas, Metas e Iniciativas. Conecta-se a OKR e Rolling Forecast no Strategy Map Integrado.
+
+\item[\textbf{Bow-Tie Analysis}] Análise de risco visual: ameaças (causas) à esquerda → evento topo (risco materializado) no centro → consequências (impactos) à direita. Barreiras preventivas (evitam evento) e mitigativas (reduzem consequências). Usado em óleo/gás, nuclear, aviação, manufatura avançada.
+
+\item[\textbf{Capacidades Dinâmicas}] Capacidade da organização de \textit{integrar, construir e reconfigurar} competências internas/externas para endereçar ambientes em mudança (Teece, Pisano & Shuen, 1997). Três microfundamentos: Sensing (identificar oportunidades/ameaças), Seizing (mobilizar recursos para capturar valor), Transforming (reconfigurar ativos, cultura, estrutura).
+
+\item[\textbf{Chasm (Abismo — Geoffrey Moore)}] Lacuna na curva de adoção (Rogers) entre \textit{Early Adopters} (visionários) e \textit{Maioria Inicial} (pragmáticos). Cruzar requer: foco nicho "praia" (beachhead), whole product, parcerias, referências fortes.
+
+\item[\textbf{Compliance}] Conformidade com leis, regulamentos, normas internas, códigos de ética e boas práticas. Programa efetivo: 10 pilares (OECD/DOJ/ISO 37301) — comprometimento topo, análise risco, políticas, canais denúncia, treinamento, due diligence terceiros, medidas disciplinares, monitoramento/auditoria, resposta incidentes, melhoria contínua.
+
+\item[\textbf{Custo da Qualidade (CoQ)}] Soma de custos de Prevenção (planejamento, treinamento, FMEA, projeto robusto), Avaliação (inspeção, teste, auditoria), Falha Interna (retrabalho, sucata, reprocesso) e Falha Externa (reclamações, recall, garantia, imagem). Regra 1:10:100 (Crosby) — cada R\$ 1 prevenção evita R\$ 10 avaliação/falha interna e R\$ 100 falha externa. Classe mundial <1,5\% receita.
+
+\item[\textbf{Data Mesh}] Arquitetura de dados descentralizada: domínios de negócio são \textit{donos} de seus dados (data products), com governança federada, self-serve infrastructure, padronização interoperabilidade. Contraponto a data lake/warehouse centralizado.
+
+\item[\textbf{DMAIC}] Metodologia Seis Sigma: Define (carta projeto, VOC, SIPOC) → Measure (MSA, capacidade, baseline) → Analyze (hipóteses, regressão, DOE, FMEA) → Improve (solução, piloto, validação) → Control (SPC, plano controle, padronização).
+
+\item[\textbf{Drex}] CBDC (Central Bank Digital Currency) brasileira — piloto 2024–2025, liquidação instantânea, programabilidade (smart contracts), inclusão financeira, soberania monetária. BCB.
+
+\item[\textbf{Due Diligence de Terceiros}] Processo rigoroso de avaliação de fornecedores, parceiros, intermediários antes da formalização de relação de negócio. Etapas: cadastro → classificação risco (alto/médio/baixo) → triagem listas restritivas (sanções, PEPs, mídia negativa, trabalho análogo escravo) → aprovação condicionada → monitoramento contínuo (re-screening mensal, revisão semestral alto risco).
+
+\item[\textbf{Economia Circular}] Modelo que elimina resíduos, mantém produtos/materiais em uso (ciclos técnicos e biológicos), regenera sistemas naturais (Ellen MacArthur Foundation). Princípios: design para circularidade, logística reversa, product-as-a-service, remanufatura, reciclagem química.
+
+\item[\textbf{ERM (Enterprise Risk Management)}] Gestão integrada de riscos corporativos alinhada à estratégia. Frameworks: COSO ERM 2017 (5 componentes, 20 princípios), ISO 31000:2018 (princípios, framework, processo). Inclui apetite a risco, KRI, heat maps, bow-tie, cenários, Three Lines Model.
+
+\item[\textbf{ESG (Environmental, Social, Governance)}] Critérios de sustentabilidade para investimento e gestão. E = clima, água, biodiversidade, economia circular; S = capital humano, direitos humanos, comunidades, diversidade; G = governança, ética, compliance, conselho, remuneração. Standards: GRI, ISSB (IFRS S1/S2), CSRD/ESRS, TCFD, SASB, PRI.
+
+\item[\textbf{Feature Store}] Repositório centralizado de features (variáveis transformadas) para ML: offline store (treinamento batch — Parquet/Iceberg/Delta Lake) + online store (serving tempo real — Redis/DynamoDB). Versionamento, linhagem, reutilização, consistência treino/serving. Ex.: Feast, Tecton, Databricks Feature Store.
+
+\item[\textbf{GenAI (Generative AI)}] IA que gera conteúdo novo (texto, código, imagem, áudio, vídeo) a partir de modelos de fundação (LLM — GPT, Llama, PaLM, Claude). Casos uso empresarial: atendimento (chatbot LLM), código (Copilot), descrição produto, pricing, busca semântica (RAG), fraude, relatórios, treinamento.
+
+\item[\textbf{Gêmeo Digital (Digital Twin)}] Réplica virtual de ativo, processo ou sistema físico, alimentada por dados tempo real (IoT), que simula, prevê e otimiza desempenho. Aplicações: manutenção preditiva, otimização processo, simulação cenários, comissionamento virtual. Níveis: descriptive, informative, predictive, prescriptive, autonomous.
+
+\item[\textbf{Governança Corporativa}] Sistema de regras, práticas e processos pelos quais a empresa é dirigida e controlada. Princípios: transparência, equidade, responsabilidade, eficiência (IBGC). Estrutura Brasil: Assembleia, Conselho Administração (mín. 5, 2/3 independentes no Novo Mercado), Diretoria, Conselho Fiscal, Comitê Auditoria. Codes: IBGC (7ª ed. 2024), B3 Novo Mercado, King IV, OECD G20.
+
+\item[\textbf{Hiperautomação}] Combinação de RPA + IA + Process Mining + Low-code/No-code + iBPMS para automação end-to-end de processos complexos, cognitivos e de decisão. Gartner: task → process → enterprise → cognitive automation.
+
+\item[\textbf{Horizontes de Inovação (McKinsey 3H)}] H1 (Core — defender/expandir negócio atual, 0–2 anos, 65–70\% recursos), H2 (Adjacente — crescer mercados/tecnologias vizinhas, 2–5 anos, 20–25\%), H3 (Transformacional — criar futuro, 5–10+ anos, 10–15\%, real options valuation).
+
+\item[\textbf{IA Responsável (Responsible AI)}] Princípios → Políticas → Controles → Auditoria → Governança. Princípios (CGI.br/OECD/NIST AI RMF/EU AI Act): Transparência, Justiça (não discriminação), Privacidade, Segurança (robustez), Responsabilidade (accountability). Controles: DPIA, validação modelo, red teaming, guardrails LLM, human-in-the-loop, monitoramento drift/fairness, auditoria contínua.
+
+\item[\textbf{Integrated Reporting (IIRC)}] Relato que conecta 6 capitais (Financeiro, Manufaturado, Intelectual, Humano, Social/Relacional, Natural) → atividades → outputs → outcomes → impacto (SDGs). Framework IIRC 2021. Base para CVM Res. 193, ISSB, CSRD.
+
+\item[\textbf{Jobs-to-be-Done (JTBD)}] Framework (Christensen/Ulwick): cliente "contrata" produto/serviço para fazer \textit{progresso} em circunstância específica. Job principal + dores (pain points) + ganhos (gains) + soluções atuais → oportunidades inovação (outcome-driven innovation).
+
+\item[\textbf{Kraljic Matrix (Adaptada)}] Classificação fornecedores: 2×2 — Poder Fornecedor × Impacto Financeiro → 4 quadrantes: Estratégicos (parceria, co-desenvolvimento), Gargalo (segurança supply, dual sourcing), Alavancagem (otimizar custo, volume), Rotinos (eficiência, padronização). Adaptação: Risco × Impacto para resiliência.
+
+\item[\textbf{Lean / TPS (Toyota Production System)}] Filosofia de eliminação desperdício (muda) — 7 tipos: superprodução, espera, transporte, processamento excessivo, estoque, movimento, defeitos. 5 princípios (Womack & Jones): Valor, Fluxo de Valor, Fluxo Contínuo, Puxar, Perfeição. Ferramentas: 5S, Kanban, SMED, Jidoka, Heijunka, Poka-yoke, VSM, Kaizen.
+
+\item[\textbf{MLOps (Machine Learning Operations)}] Práticas para ciclo de vida ML em produção: Feature Store → Experiment Tracking (MLflow) → Treinamento Distribuído (Ray) → Validação (backtest temporal, fairness, drift) → CI/CD (Docker/Helm/K8s) → Canary Deploy → Monitoramento (Data Drift PSI, Concept Drift AUC drop, Latency, Cost) → Auto-retrain (trigger-based) → Governança (Model Card, Data Card, Comitê IA).
+
+\item[\textbf{Net Zero (SBTi)}] Metas baseadas na ciência: Near-term 2030 (–50\% Scope 1+2 absoluto, –30\% Scope 3 intensidade), Long-term 2050 (–90–95\% total, neutralização resíduos via BECCS/DACCS/natureza). Validação SBTi obrigatória para credibilidade.
+
+\item[\textbf{OKR (Objectives and Key Results)}] Framework de execução: Objectives (qualitativos, inspiradores, ambiciosos) + Key Results (quantitativos, mensuráveis, trimestrais). Origem: Grove (Intel, 1983), popularizado por Doerr (Google). Cascata: Conselho → CEO → VPs → Diretorias → Squads. Alinhamento vertical + autonomia horizontal. Diferente de KPI (monitora saúde) — OKR impulsiona mudança.
+
+\item[\textbf{Portfolio Kanban}] Visualização fluxo portfólio: Ideação → Descoberta → Entrega → Validação → Pronto. WIP limits por coluna, cadências (PI Planning trimestral, Sprint 2 semanas), métricas flow (Lead Time, Cycle Time, Throughput, Flow Efficiency, Predictability). Base para SAFe Portfolio Level.
+
+\item[\textbf{QFD (Quality Function Deployment / House of Quality)}] Tradução Voz do Cliente (VOC) → Requisitos Técnicos → Metas → Benchmark. Matriz relacionamento (◉ forte 9, ○ médio 3, □ fraco 1), telhado (correlações técnicas), priorização. Base para design robusto (Taguchi) e APQP.
+
+\item[\textbf{Qualidade 4.0}] Aplicação de tecnologias Indústria 4.0 à gestão da qualidade: IoT/SPC tempo real, IA/ML detecção anomalia, gêmeo digital processo, blockchain rastreabilidade, auditoria remota, big data analytics. ASQ Quality 4.0 Framework (2022).
+
+\item[\textbf{Real Options Valuation}] Avaliação de investimentos sob incerteza usando teoria de opções financeiras: opção de expandir, abandonar, esperar, escalonar, mudar. Essencial para Horizonte 3 (inovação transformacional) onde NPV tradicional subvaloriza flexibilidade estratégica.
+
+\item[\textbf{Resiliência Organizacional (ISO 22316)}] Capacidade de antecipar, absorver, adaptar e transformar-se diante de disrupções. Dimensões: liderança, cultura, capacidade adaptativa, gestão risco, continuidade negócio. Métricas: TTR (Time to Recover), TTS (Time to Survive), RTO/RPO.
+
+\item[\textbf{Risk Appetite Statement (RAS)}] Declaração formal do nível de risco aceito por categoria. Componentes: categoria, declaração apetite, nível tolerância (baixo/médio/alto), KRI, limites hard (não ultrapassar) / soft (alerta), dono do risco, frequência revisão. Aprovado pelo Conselho.
+
+\item[\textbf{Rolling Forecast}] Previsão contínua com horizonte móvel (12–18 meses), atualizada mensal/trimestral, baseada em drivers (volume, preço, mix, câmbio, capex). Substitui orçamento anual estático. Princípios Beyond Budgeting (Hope & Fraser, BBRT): metas relativas, recompensas relativas, planejamento contínuo, recursos sob demanda, governança transparente.
+
+\item[\textbf{Scope 1, 2, 3 (GHG Protocol)}] Scope 1: emissões diretas (combustão própria, frota, processos). Scope 2: emissões indiretas energia comprada (eletricidade, vapor). Scope 3: 15 categorias upstream/downstream (bens/serviços comprados, capital goods, transporte, resíduos, viagens, uso produtos vendidos, fim de vida, investimentos). 74\% emissões corporativas típicas em Scope 3 (CDP 2024).
+
+\item[\textbf{Seis Sigma}] Metodologia redução variação: DMAIC, belts (Champion, MBB, BB, GB, YB), meta 3,4 DPMO (defects per million opportunities). Ferramentas: SIPOC, VOC/CTQ, MSA, teste hipóteses, regressão, DOE, FMEA, SPC. Lean Seis Sigma = speed (lean) + quality (six sigma).
+
+\item[\textbf{Stakeholder Salience (Mitchell, Agle & Wood, 1997)}] Classificação stakeholders por 3 atributos: Poder, Legitimidade, Urgência → 7 classes: Definitivos (3 atributos — colaboração ativa), Expectantes: Dominantes (Poder+Legitimidade — parceria), Perigosos (Poder+Urgência — resposta rápida), Dependentes (Legitimidade+Urgência — empoderamento); Latentes: Dormentes (Poder — monitoramento), Discricionários (Legitimidade — apoio voluntário), Exigentes (Urgência — mediação).
+
+\item[\textbf{Strategy Map (Mapa Estratégico)]] Diagrama causal que conecta objetivos das 4 perspectivas BSC (Financeira ← Clientes ← Processos ← Aprendizado) com setas de hipótese causa-efeito testáveis. Integra OKR (KR por perspectiva) e KPIs financeiros/não-financeiros. Base para execução estratégica (Kaplan & Norton, 2001, 2008).
+
+\item[\textbf{Three Lines Model (IIA 2020)}] 1ª Linha: Operações (donos do risco, implementam controles, monitoram KRI, reportam incidentes). 2ª Linha: Compliance/Riscos/Controles (facilitam, monitoram — políticas, avaliação risco, due diligence, treinamento, canal denúncia, RegTech). 3ª Linha: Auditoria Interna (assurance independente — plano baseado risco, testes substantivos, relatório achados, follow-up). Conselho/Auditoria: Governança.
+
+\item[\textbf{Value Stream Mapping (VSM)}] Mapeamento visual do fluxo de valor: estado atual → estado futuro. Identifica: lead time total, tempo valor-agregado (%), estoque, % value-added, OEE, gargalos, kaizen opportunities. Aplicado manufatura, logística, desenvolvimento software, serviços.
+
+\item[\textbf{VUCA / BANI}] VUCA (Volatility, Uncertainty, Complexity, Ambiguity) — Bennett & Lemoine (2014). BANI (Brittle, Anxious, Nonlinear, Incomprehensible) — Cascio (2020). Descrevem ambiente contemporâneo: frágil (sistemas otimizados quebram fácil), ansioso (info overload), não-linear (pequenas causas → grandes efeitos), incompreensível (explicação pós-fato).
+
+\end{glossario}

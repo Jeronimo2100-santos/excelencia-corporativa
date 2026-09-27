@@ -1,0 +1,349 @@
+\documentclass[12pt,a4paper]{abntex2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{etoolbox}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,arrows.meta,shadows,patterns,fit,backgrounds,matrix}
+\pgfplotsset{compat=1.18}
+
+% ============================================================
+% CORES DA MARCA — EXCELÊNCIA CORPORATIVA
+% ============================================================
+\definecolor{ecnavy}{RGB}{12, 28, 58}
+\definecolor{ecgold}{RGB}{205, 165, 42}
+\definecolor{ecdark}{RGB}{8, 18, 38}
+\definecolor{eclight}{RGB}{245, 243, 238}
+\definecolor{ecteal}{RGB}{0, 128, 115}
+\definecolor{eccoral}{RGB}{230, 95, 70}
+
+% ============================================================
+% CAPA PROFISSIONAL COM TIKZ
+% ============================================================
+\newcommand{\capaProfissional}{
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+% Fundo gradiente simulado
+\fill[ecdark] (current page.south west) rectangle (current page.north east);
+
+% Linha decorativa superior
+\draw[ecgold, line width=2.5pt] 
+  ($(current page.north west) + (3cm, -2.5cm)$) -- 
+  ($(current page.north east) + (-3cm, -2.5cm)$);
+
+% Título principal
+\node[anchor=north, text=white, font=\fontsize{40}{46}\selectfont\bfseries\sffamily, 
+      text width=14.5cm, align=center] 
+  at ($(current page.north) + (0, -4.5cm)$) 
+  {Excelência Corporativa};
+
+% Subtítulo
+\node[anchor=north, text=ecgold, font=\fontsize{19}{24}\selectfont\sffamily, 
+      text width=13.5cm, align=center] 
+  at ($(current page.north) + (0, -8.8cm)$) 
+  {Estratégias e Ferramentas Integradas para\\
+   Liderança em Gestão e Inovação};
+
+% Linha decorativa central
+\draw[ecgold, line width=1.5pt] 
+  ($(current page.center) + (-5.5cm, 0)$) -- 
+  ($(current page.center) + (5.5cm, 0)$);
+
+% Autor
+\node[anchor=north, text=white, font=\fontsize{17}{22}\selectfont\sffamily] 
+  at ($(current page.center) + (0, 1.5cm)$) 
+  {Jeronimo Alves dos Santos};
+
+% Instituição
+\node[anchor=north, text=white!70, font=\fontsize{13}{16}\selectfont\sffamily] 
+  at ($(current page.center) + (0, 0.4cm)$) 
+  {Universidade Federal de São Carlos (UFSCar)};
+
+% Linha decorativa inferior
+\draw[ecgold, line width=1pt] 
+  ($(current page.center) + (-4.5cm, -2.2cm)$) -- 
+  ($(current page.center) + (4.5cm, -2.2cm)$);
+
+% Data
+\node[anchor=north, text=white!60, font=\fontsize{12}{15}\selectfont\sffamily] 
+  at ($(current page.center) + (0, -4cm)$) 
+  {2026};
+
+% Linha decorativa base
+\draw[ecgold, line width=2.5pt] 
+  ($(current page.south west) + (3cm, 2.5cm)$) -- 
+  ($(current page.south east) + (-3cm, 2.5cm)$);
+
+% Elementos decorativos - quadrados nos cantos
+\fill[ecgold] ($(current page.center) + (3.8cm, -3.8cm)$) rectangle ($(current page.center) + (4.1cm, -3.5cm)$);
+\fill[ecgold] ($(current page.center) + (3.8cm, 3.8cm)$) rectangle ($(current page.center) + (4.1cm, 4.1cm)$);
+\fill[ecgold] ($(current page.center) + (-3.8cm, -3.8cm)$) rectangle ($(current page.center) + (-3.5cm, -3.5cm)$);
+\fill[ecgold] ($(current page.center) + (-3.8cm, 3.8cm)$) rectangle ($(current page.center) + (-3.5cm, 4.1cm)$);
+
+% Barras laterais
+\fill[ecgold] 
+  ($(current page.north west) + (2.5cm, -10cm)$) rectangle 
+  ($(current page.south west) + (2.8cm, 10cm)$);
+\fill[ecgold] 
+  ($(current page.north east) + (-2.5cm, -10cm)$) rectangle 
+  ($(current page.south east) + (-2.8cm, 10cm)$);
+
+% ISBN placeholder
+\node[anchor=south, text=white!50, font=\fontsize{9}{11}\selectfont\sffamily] 
+  at ($(current page.south) + (0, 3.2cm)$) 
+  {ISBN: 978-65-XXXX-XXXX-X};
+
+\end{tikzpicture}
+\vspace*{\fill}
+\newpage
+}
+
+% ============================================================
+% FOLHA DE ROSTO (VERSÃO SIMPLIFICADA)
+% ============================================================
+\newcommand{\capaSimples}{
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+\fill[ecdark] (current page.south west) rectangle (current page.north east);
+
+\draw[ecgold, line width=2pt] 
+  ($(current page.north west) + (3cm, -2.5cm)$) -- 
+  ($(current page.north east) + (-3cm, -2.5cm)$);
+
+\node[anchor=north, text=white, font=\fontsize{38}{44}\selectfont\bfseries\sffamily, 
+      text width=14.5cm, align=center] 
+  at ($(current page.north) + (0, -4cm)$) 
+  {Excelência Corporativa};
+
+\node[anchor=north, text=ecgold, font=\fontsize{17}{22}\selectfont\sffamily, 
+      text width=13.5cm, align=center] 
+  at ($(current page.north) + (0, -7.8cm)$) 
+  {Estratégias e Ferramentas Integradas para\\
+   Liderança em Gestão e Inovação};
+
+\draw[ecgold, line width=1.5pt] 
+  ($(current page.center) + (-5.5cm, 0)$) -- 
+  ($(current page.center) + (5.5cm, 0)$);
+
+\node[anchor=north, text=white, font=\fontsize{17}{22}\selectfont\sffamily] 
+  at ($(current page.center) + (0, 1cm)$) 
+  {Jeronimo Alves dos Santos};
+
+\node[anchor=north, text=white!70, font=\fontsize{13}{16}\selectfont\sffamily] 
+  at ($(current page.center) + (0, 0cm)$) 
+  {Universidade Federal de São Carlos (UFSCar)};
+
+\node[anchor=north, text=white!60, font=\fontsize{12}{15}\selectfont\sffamily] 
+  at ($(current page.center) + (0, -3.5cm)$) 
+  {2026};
+
+\draw[ecgold, line width=2pt] 
+  ($(current page.south west) + (3cm, 2.5cm)$) -- 
+  ($(current page.south east) + (-3cm, 2.5cm)$);
+
+\fill[ecgold] 
+  ($(current page.north west) + (2.5cm, -10cm)$) rectangle 
+  ($(current page.south west) + (2.8cm, 10cm)$);
+\fill[ecgold] 
+  ($(current page.north east) + (-2.5cm, -10cm)$) rectangle 
+  ($(current page.south east) + (-2.8cm, 10cm)$);
+
+\end{tikzpicture}
+\vspace*{\fill}
+\newpage
+}
+
+% ============================================================
+% ESTILOS DE CAPÍTULO
+% ============================================================
+\renewcommand{\ABNTEXchapterfont}{\fontsize{18}{22}\selectfont\bfseries\sffamily\color{ecnavy}}
+\renewcommand{\ABNTEXsectionfont}{\fontsize{14}{17}\selectfont\bfseries\sffamily\color{ecnavy}}
+\renewcommand{\ABNTEXsubsectionfont}{\fontsize{12}{15}\selectfont\bfseries\sffamily\color{ecteal}}
+\renewcommand{\ABNTEXsubsubsectionfont}{\fontsize{11}{14}\selectfont\itshape\sffamily\color{ecnavy}}
+
+% Espaçamento
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.3\baselineskip}
+
+% Listings (código)
+\lstdefinestyle{ecstyle}{
+  backgroundcolor=\color{eclight},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{ecnavy}\bfseries,
+  commentstyle=\color{ecteal}\itshape,
+  stringstyle=\color{eccoral},
+  frame=single,
+  framesep=5pt,
+  rulecolor=\color{ecgold},
+  breaklines=true,
+  showstringspaces=false
+}
+
+% ============================================================
+% INÍCIO DO DOCUMENTO
+% ============================================================
+\begin{document}
+
+% Capa profissional
+\capaProfissional
+
+% Folha de rosto
+\capaSimples
+
+% Ficha catalográfica
+\begin{fichacatalografica}
+\vspace*{\fill}
+\small
+\fbox{\parbox{\textwidth-2\fboxsep}{
+\textbf{Excelência Corporativa: Estratégias e Ferramentas Integradas para Liderança em Gestão e Inovação} / Jeronimo Alves dos Santos. -- São Carlos : UFSCar, 2026.\\
+
+xiv, 450 p.\\
+
+ISBN: 978-65-XXXX-XXXX-X\\
+
+1. Gestão estratégica. 2. Administração financeira. 3. Gestão de operações. 4. Gestão de pessoas. 5. Marketing. 6. Gestão de projetos. 7. Inovação. 8. Gestão da qualidade. 9. Tecnologia da informação. 10. Comunicação corporativa. 11. Sustentabilidade. 12. Governança corporativa. 13. Gestão de riscos. 14. Transformação digital. I. Título.\\
+
+CDD: 658
+}}
+\vspace*{\fill}
+\end{fichacatalografica}
+
+% Declaração de uso de IA
+\chapter*{Declaração de uso de inteligência artificial}
+\addcontentsline{toc}{chapter}{Declaração de uso de inteligência artificial}
+
+Em cumprimento à \textbf{Portaria CNPq nº 2.664, de 24 de junho de 2026}, que estabelece os requisitos para a declaração de uso de ferramentas de inteligência artificial na produção científica, o autor declara que o presente volume foi produzido com o auxílio de ferramentas de IA generativa (modelos de linguagem de grande escala) nas seguintes etapas:
+
+\begin{enumerate}
+    \item \textbf{Levantamento bibliográfico}: Busca sistemática de literatura acadêmica em bases de dados (OpenAlex, Semantic Scholar, Scopus, Web of Science) com apoio de scripts de automação que utilizam IA para filtrar e classificar referências relevantes (seminais + 2020–2025).
+    
+    \item \textbf{Estruturação e matriz de literatura}: Construção da matriz global de 14 capítulos × 4–6 eixos temáticos × 20+ referências cada, com apoio de IA para organização e formatação.
+    
+    \item \textbf{Redação dos capítulos}: Formulação de rascunhos iniciais seguindo estrutura padronizada (Resumo, Introdução, Fundamentação 4–5 eixos, Metodologia, Análise com 4 figuras/tabelas originais, Conclusão, Referências ABNT), com apoio de IA generativa.
+    
+    \item \textbf{Artefatos visuais}: Concepção de 56 figuras/tabelas originais (Strategy Maps, OKR Cascades, Dynamic Capabilities Loops, Blue Ocean Canvases, Heat Maps, Roadmaps, Matrizes de Materialidade, MLOps Pipelines, Responsible AI Frameworks) desenhadas em TikZ/pgfplots com apoio de IA para código.
+    
+    \item \textbf{Edição e revisão}: Verificação de consistência terminológica, correção de estilo acadêmico ABNT, formatação de referências, identificação de inconsistências argumentativas.
+    
+    \item \textbf{Produção LaTeX}: Template abnTeX2 com capa personalizada, sumário, lista de figuras/tabelas, referências cruzadas, apêndices, compilação \texttt{latexmk -pdf}.
+\end{enumerate}
+
+Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, verificando independentemente todas as afirmações, dados, datas, nomes de instituições, referências bibliográficas e opiniões expressas no texto. As ferramentas de IA foram utilizadas como auxílios ao processo criativo e editorial, não como substitutas do julgamento humano. O autor assume integral responsabilidade por todo o conteúdo apresentado.
+
+% Sumário
+\tableofcontents
+\newpage
+
+% Lista de figuras
+\listoffigures
+\newpage
+
+% Lista de tabelas
+\listoftables
+\newpage
+
+% Lista de siglas/abreviaturas
+\input{../02-textos-transversais/abreviaturas}
+\newpage
+
+% Prefácio
+\input{../02-textos-transversais/prefacio}
+\newpage
+
+% Introdução geral
+\input{../02-textos-transversais/introducao-geral}
+\newpage
+
+% ============================================================
+% PARTE I — FUNDAMENTOS ESTRATÉGICOS E FINANCEIROS
+% ============================================================
+\part{Fundamentos Estratégicos e Financeiros}
+
+% Capítulo 1
+\input{../03-capitulos/01-planejamento-estrategico}
+
+% Capítulo 2
+\input{../03-capitulos/02-gestao-financeira}
+
+% Capítulo 3
+\input{../03-capitulos/03-operacoes-cadeia-suprimentos}
+
+% ============================================================
+% PARTE II — PESSOAS, MARKETING E EXECUÇÃO
+% ============================================================
+\part{Pessoas, Marketing e Execução}
+
+% Capítulo 4
+\input{../03-capitulos/04-gestao-pessoas-lideranca}
+
+% Capítulo 5
+\input{../03-capitulos/05-marketing-vendas}
+
+% Capítulo 6
+\input{../03-capitulos/06-gestao-projetos-portfolio}
+
+% ============================================================
+% PARTE III — INOVAÇÃO, QUALIDADE E TECNOLOGIA
+% ============================================================
+\part{Inovação, Qualidade e Tecnologia}
+
+% Capítulo 7
+\input{../03-capitulos/07-inovacao-desenvolvimento-produtos}
+
+% Capítulo 8
+\input{../03-capitulos/08-gestao-qualidade-excelencia}
+
+% Capítulo 9
+\input{../03-capitulos/09-tecnologia-informacao-dados}
+
+% ============================================================
+% PARTE IV — COMUNICAÇÃO, SUSTENTABILIDADE E GOVERNANÇA
+% ============================================================
+\part{Comunicação, Sustentabilidade e Governança}
+
+% Capítulo 10
+\input{../03-capitulos/10-comunicacao-stakeholders}
+
+% Capítulo 11
+\input{../03-capitulos/11-sustentabilidade-esg}
+
+% Capítulo 12
+\input{../03-capitulos/12-compliance-governanca}
+
+% ============================================================
+% PARTE V — NOVOS HORIZONTES: RISCOS E TRANSFORMAÇÃO DIGITAL
+% ============================================================
+\part{Novos Horizontes: Riscos e Transformação Digital}
+
+% Capítulo 13
+\input{../03-capitulos/13-gestao-riscos-corporativos}
+
+% Capítulo 14
+\input{../03-capitulos/14-transformacao-digital-ia}
+
+% Considerações finais
+\input{../02-textos-transversais/consideracoes-finais}
+\newpage
+
+% Referências bibliográficas
+\bibliography{../04-producao/referencias}
+
+% Glossário
+\input{../02-textos-transversais/glossario}
+
+% Apêndices
+\appendix
+\input{../02-textos-transversais/apendice-a-matriz-literatura}
+\input{../02-textos-transversais/apendice-b-figuras-originais}
+\input{../02-textos-transversais/apendice-c-dados-reais}
+
+\end{document}

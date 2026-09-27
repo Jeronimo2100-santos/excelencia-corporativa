@@ -1,0 +1,129 @@
+% ============================================================
+% FIGURA 1.2 — OKR CASCADE VISUAL (NUBANK CASE)
+% Capítulo 1 — Planejamento Estratégico & Análise de Ambiente
+% ============================================================
+
+\documentclass[tikz,border=10pt]{standalone}
+\input{../estilo-comum.tikz}
+
+\begin{document}
+\begin{tikzpicture}[
+  node distance=0.8cm and 1.5cm,
+  every node/.style={font=\sffamily}
+]
+
+% ============================================================
+% TÍTULO
+% ============================================================
+\node[tituloFigura, anchor=north] (titulo) at (0, 8.5) 
+  {OKR Cascade Visual — Nubank (Alinhamento Vertical + Autonomia Horizontal)};
+\node[subtituloFigura, below=2pt of titulo] 
+  {Conselho → CEO → VP Product → Squad Onboarding | Trimestral Q1'25};
+
+% ============================================================
+% NÍVEL 1: CONSELHO (ANUAL)
+% ============================================================
+\node[caixaheader, minimum width=12cm, fill=ecdark] (conselhoHeader) at (0, 7.2) 
+  {CONSELHO DE ADMINISTRAÇÃO (Objetivo Anual)};
+
+\node[caixadestaque, minimum width=11cm, minimum height=2.0cm] (conselhoOKR) at (0, 5.8) 
+  {\textbf{O: Tornar Nubank a plataforma financeira \#1 LatAm}\\
+  \textbf{KR1:} Market Share crédito > 25\% Brasil\\
+  \textbf{KR2:} Receita/cliente > R\$ 450/ano\\
+  \textbf{KR3:} Custo servir < R\$ 15/mês\\
+  \textit{Responsável: Chairman + CEO | Revisão: Anual}};
+
+% ============================================================
+% NÍVEL 2: CEO (TRIMESTRAL)
+% ============================================================
+\node[caixaheader, minimum width=10cm, fill=ecnavy] (ceoHeader) at (-5, 4.2) 
+  {CEO (Trimestral Q1'25)};
+
+\node[caixadestaque, minimum width=5.5cm, minimum height=2.2cm] (ceoOKR) at (-5, 2.8) 
+  {\textbf{O: Acelerar cross-sell NuInvest + NuSeguros}\\
+  \textbf{KR1:} \% clientes 3+ produtos 18\% → 24\%\\
+  \textbf{KR2:} Receita não-crédito 35\% → 42\%\\
+  \textbf{KR3:} NPS produto novo > 80\\
+  \textit{Owner: CEO | Revisão: Mensal}};
+
+% ============================================================
+% NÍVEL 3: VP PRODUCT (TRIMESTRAL)
+% ============================================================
+\node[caixaheader, minimum width=10cm, fill=ecnavy] (vpHeader) at (5, 4.2) 
+  {VP PRODUCT (Trimestral Q1'25)};
+
+\node[caixa, minimum width=5.5cm, minimum height=2.2cm] (vpOKR) at (5, 2.8) 
+  {\textbf{O: Lançar ``NuEmpresas'' PJ completo}\\
+  \textbf{KR1:} 50k contas PJ ativas Q1\\
+  \textbf{KR2:} Tempo onboarding < 10 min\\
+  \textbf{KR3:} Churn 90d < 3\%\\
+  \textit{Owner: VP Product | Revisão: Quinzenal}};
+
+% Conexão Conselho → CEO + VP
+\draw[setaforte] (conselhoOKR.south) -- ++(0,-0.3) -| (ceoOKR.north);
+\draw[setaforte] (conselhoOKR.south) -- ++(0,-0.3) -| (vpOKR.north);
+
+% ============================================================
+% NÍVEL 4: SQUAD ONBOARDING (SPRINT)
+% ============================================================
+\node[caixaheader, minimum width=12cm, fill=ecteal!80!black] (squadHeader) at (0, 1.0) 
+  {SQUAD ONBOARDING (Sprint 2 semanas)};
+
+\node[caixa, minimum width=5.5cm, minimum height=2.0cm] (squadOKR1) at (-6, -0.5) 
+  {\textbf{O: Eliminar fricção KYC PJ}\\
+  \textbf{KR1:} Taxa aprovação auto 65\% → 85\%\\
+  \textbf{KR2:} Tempo decisão 4h → 15min\\
+  \textbf{KR3:} Falsos positivos < 2\%\\
+  \textit{Owner: Squad Lead + ML Engineer}};
+
+\node[caixa, minimum width=5.5cm, minimum height=2.0cm] (squadOKR2) at (0, -0.5) 
+  {\textbf{O: Ativação imediata conta PJ}\\
+  \textbf{KR1:} Ativação D+0 > 90\%\\
+  \textbf{KR2:} NPS onboarding > 85\\
+  \textbf{KR3:} Suporte ticket < 5\%\\
+  \textit{Owner: Squad Lead + Designer}};
+
+\node[caixa, minimum width=5.5cm, minimum height=2.0cm] (squadOKR3) at (6, -0.5) 
+  {\textbf{O: Cross-sell nativo no fluxo}\\
+  \textbf{KR1:} Attach rate NuInvest 15\%\\
+  \textbf{KR2:} Attach rate NuSeguros 8\%\\
+  \textbf{KR3:} Receita/usuário +12\%\\
+  \textit{Owner: Squad Lead + PM}};
+
+% Conexões VP → Squads
+\draw[setaforte] (vpOKR.south) -- ++(0,-0.3) -| (squadOKR1.north);
+\draw[setaforte] (vpOKR.south) -- ++(0,-0.3) -| (squadOKR2.north);
+\draw[setaforte] (vpOKR.south) -- ++(0,-0.3) -| (squadOKR3.north);
+
+% Conexão CEO → Squads (alinhamento transversal)
+\draw[setafraca, densely dotted] (ceoOKR.south) -- ++(0,-0.2) -| (squadOKR1.north);
+\draw[setafraca, densely dotted] (ceoOKR.south) -- ++(0,-0.2) -| (squadOKR2.north);
+\draw[setafraca, densely dotted] (ceoOKR.south) -- ++(0,-0.2) -| (squadOKR3.north);
+
+% ============================================================
+% PRINCÍPIOS DA CASCATA (CAIXA LATERAL)
+% ============================================================
+\node[caixa, minimum width=4.5cm, anchor=north east, fill=ecgold!10, draw=ecgold] (principios) at (9, 7.2) 
+  {\textbf{PRINCÍPIOS CASCATA OKR}\\
+  \textcolor{ecnavy}{\textbf{▸}} Alinhamento vertical (top-down)\\
+  \textcolor{ecnavy}{\textbf{▸}} Autonomia horizontal (bottom-up)\\
+  \textcolor{ecnavy}{\textbf{▸}} Transparência total (OKRs públicos)\\
+  \textcolor{ecnavy}{\textbf{▸}} Cadência: Anual → Trimestral → Sprint\\
+  \textcolor{ecnavy}{\textbf{▸}} Check-ins semanais + Review trimestral\\
+  \textcolor{ecnavy}{\textbf{▸}} Falha = aprendizado (não punição)};
+
+% ============================================================
+% MÉTRICAS DE SAÚDE DA CASCATA (RODAPÉ)
+% ============================================================
+\node[caixa, minimum width=12cm, anchor=north, fill=eclight, draw=ecgray] (metricas) at (0, -3.5) 
+  {\textbf{MÉTRICAS DE SAÚDE DA CASCATA (Nubank Q4'24)}\\
+  \textcolor{ecnavy}{\textbf{Alinhamento:}} 94\% colaboradores com OKR ativo | \textcolor{ecnavy}{\textbf{Transparência:}} 100\% OKRs visíveis internamente | \textcolor{ecnavy}{\textbf{Execução:}} 78\% KRs atingidos (meta >70\%) | \textcolor{ecnavy}{\textbf{Agilidade:}} Tempo média criação OKR = 3 dias | \textcolor{ecnavy}{\textbf{Autonomia:}} 82\% OKRs propostos bottom-up};
+
+% ============================================================
+% FONTE
+% ============================================================
+\node[fonteNota, anchor=south west, text width=15cm] at (-8.5, -5.5) 
+  {Fonte: Doerr (2018) \textit{Measure What Matters}; Grove (1983) \textit{High Output Management}; Nubank Annual Report 2023, Quarterly Reports 2024, Nu Leadership Principles. Cascata: Conselho → CEO → VP → Squad.};
+
+\end{tikzpicture}
+\end{document}
