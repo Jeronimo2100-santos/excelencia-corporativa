@@ -1,0 +1,34 @@
+# Build artifacts
+03-capitulos-tex/
+04-producao/*.aux
+04-producao/*.bbl
+04-producao/*.blg
+04-producao/*.lof
+04-producao/*.log
+04-producao/*.lot
+04-producao/*.toc
+04-producao/*.pdf
+04-producao/*.synctex.gz
+04-producao/*.fdb_latexmk
+04-producao/*.fls
+04-producao/pass*.txt
+04-producao/pass*.err
+04-producao/teste-*.tex
+04-producao/bibtex.txt
+04-producao/fontes/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*

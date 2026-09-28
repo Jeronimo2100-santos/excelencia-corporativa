@@ -1,20 +1,80 @@
+% ============================================================
+% EXCELÊNCIA CORPORATIVA
+% Compilação: lualatex (UTF-8 nativo + glifos Unicode nos diagramas)
+%   lualatex livro-abntex2.tex   (3 passagens)
+% ============================================================
 \documentclass[12pt,a4paper]{abntex2}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+
+% ------------------------------------------------------------
+% Codificação e idioma — LuaLaTeX lê UTF-8 nativamente, portanto
+% NÃO usamos inputenc/fontenc (incompatíveis com fontspec).
+% ------------------------------------------------------------
 \usepackage[brazil]{babel}
+\usepackage{fontspec}
+
+% ------------------------------------------------------------
+% Fontes. Os arquivos .ttf estão versionados em ./fontes/ para que
+% o livro compile sem depender de fontes instaladas no sistema.
+%
+% DejaVu Sans Mono é a fonte dos diagramas ASCII porque possui os
+% glifos de desenho de caixa (U+2500–U+257F), setas (U+2190–U+21B3)
+% e símbolos geométricos usados nos 55 artefatos do livro.
+% ------------------------------------------------------------
+\IfFileExists{fontes/DejaVuSerif.ttf}{
+  \setmainfont[
+    Path          = fontes/,
+    Extension     = .ttf,
+    UprightFont   = DejaVuSerif,
+    BoldFont      = DejaVuSerif-Bold,
+    ItalicFont    = DejaVuSerif-Italic,
+    BoldItalicFont= DejaVuSerif-BoldItalic,
+    Scale         = 0.94,
+  ]{DejaVuSerif}
+  \setsansfont[
+    Path          = fontes/,
+    Extension     = .ttf,
+    UprightFont   = DejaVuSans,
+    BoldFont      = DejaVuSans-Bold,
+    ItalicFont    = DejaVuSans-Oblique,
+    BoldItalicFont= DejaVuSans-BoldOblique,
+    Scale         = MatchLowercase,
+  ]{DejaVuSans}
+  \setmonofont[
+    Path       = fontes/,
+    Extension  = .ttf,
+    UprightFont= DejaVuSansMono,
+    BoldFont   = DejaVuSansMono-Bold,
+    Scale      = 0.86,
+    Ligatures  = NoCommon,   % preserva --, |> e | literais dos diagramas
+  ]{DejaVuSansMono}
+}{
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}[Ligatures=NoCommon]
+}
+
+% Fonte usada nos artefatos ASCII-art
+\newcommand{\ecmono}{\ttfamily}
+
 \usepackage{indentfirst}
 \usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{longtable}
+\usepackage{array}
 \usepackage{etoolbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \usepackage{tikz}
 \usetikzlibrary{calc,positioning,shapes.geometric,arrows.meta,shadows,patterns,fit,backgrounds,matrix}
 \pgfplotsset{compat=1.18}
+
+% hyperref deve vir por último (abnTeX2 exige)
+\usepackage{hyperref}
 
 % ============================================================
 % CORES DA MARCA — EXCELÊNCIA CORPORATIVA
@@ -188,6 +248,55 @@
   showstringspaces=false
 }
 
+% ------------------------------------------------------------
+% Ambiente de glossário (ABNT NBR 6029).
+%
+% Usamos list + description em vez de \newenvironment{glossario}
+% porque o ambiente "glossario" não existe no abnTeX2 e o
+% "description" da LaTeX 2025+ removeu \descriptionlabelwidth.
+% Em \newenvironment, os parâmetros do LaTeX precisam de ##.
+% ------------------------------------------------------------
+\newenvironment{ecglossario}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{3.4cm}%
+    \setlength{\labelwidth}{3.1cm}%
+    \setlength{\labelsep}{0.3cm}%
+    \setlength{\itemindent}{0pt}%
+    \setlength{\itemsep}{0.45em}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0.4em}%
+    \renewcommand{\makelabel}[1]{\textcolor{ecnavy}{\bfseries ##1}\hspace{0.3em}}%
+  }%
+}{\end{list}}
+
+% Evita que figuras/tabulas flutuem para fora do capítulo
+% Abreviatura latina (etc.) usada em verbetes do glossário
+\providecommand{\ETC}{\dots}
+
+% Evita que figuras/tabelas flutuem para fora do capítulo
+\usepackage[section]{placeins}
+
+% O abnTeX2 usa os macros de caption do memoir, mas a classe tambem preve o
+% uso do pacote caption (\AtEndPackage{caption}); e ele que permite criar a
+% serie "Quadro" com numeracao propria.
+\usepackage{caption}
+
+% ============================================================
+% NUMERAÇÃO DE FIGURAS, TABELAS E QUADROS (ABNT NBR 14724)
+% Formato capítulo.sequencial (Figura 3.1) em vez da série simples.
+% ============================================================
+\makeatletter
+\@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter}
+\makeatother
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+
+% Quadros usam o mesmo contador de Tabela (memoir/abntex2).
+% Para distinguir na legenda, usamos \captionsetup{type=table} e
+% labelformat=empty + prefixo manual "Quadro".
+% Nao precisa de contador proprio nem ambiente proprio.
+
 % ============================================================
 % INÍCIO DO DOCUMENTO
 % ============================================================
@@ -239,6 +348,11 @@ Em cumprimento à \textbf{Portaria CNPq nº 2.664, de 24 de junho de 2026}, que 
 
 Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, verificando independentemente todas as afirmações, dados, datas, nomes de instituições, referências bibliográficas e opiniões expressas no texto. As ferramentas de IA foram utilizadas como auxílios ao processo criativo e editorial, não como substitutas do julgamento humano. O autor assume integral responsabilidade por todo o conteúdo apresentado.
 
+% Títulos das listas (ABNT NBR 14724): as legendas usam Figura/Tabela,
+% as listas usam "Lista de Figuras"/"Lista de Tabelas".
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tabelas}
+
 % Sumário
 \tableofcontents
 \newpage
@@ -269,13 +383,13 @@ Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, ve
 \part{Fundamentos Estratégicos e Financeiros}
 
 % Capítulo 1
-\input{../03-capitulos/01-planejamento-estrategico}
+\input{../03-capitulos-tex/01-planejamento-estrategico}
 
 % Capítulo 2
-\input{../03-capitulos/02-gestao-financeira}
+\input{../03-capitulos-tex/02-gestao-financeira}
 
 % Capítulo 3
-\input{../03-capitulos/03-operacoes-cadeia-suprimentos}
+\input{../03-capitulos-tex/03-operacoes-cadeia-suprimentos}
 
 % ============================================================
 % PARTE II — PESSOAS, MARKETING E EXECUÇÃO
@@ -283,13 +397,13 @@ Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, ve
 \part{Pessoas, Marketing e Execução}
 
 % Capítulo 4
-\input{../03-capitulos/04-gestao-pessoas-lideranca}
+\input{../03-capitulos-tex/04-gestao-pessoas-lideranca}
 
 % Capítulo 5
-\input{../03-capitulos/05-marketing-vendas}
+\input{../03-capitulos-tex/05-marketing-vendas}
 
 % Capítulo 6
-\input{../03-capitulos/06-gestao-projetos-portfolio}
+\input{../03-capitulos-tex/06-gestao-projetos-portfolio}
 
 % ============================================================
 % PARTE III — INOVAÇÃO, QUALIDADE E TECNOLOGIA
@@ -297,13 +411,13 @@ Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, ve
 \part{Inovação, Qualidade e Tecnologia}
 
 % Capítulo 7
-\input{../03-capitulos/07-inovacao-desenvolvimento-produtos}
+\input{../03-capitulos-tex/07-inovacao-desenvolvimento-produtos}
 
 % Capítulo 8
-\input{../03-capitulos/08-gestao-qualidade-excelencia}
+\input{../03-capitulos-tex/08-gestao-qualidade-excelencia}
 
 % Capítulo 9
-\input{../03-capitulos/09-tecnologia-informacao-dados}
+\input{../03-capitulos-tex/09-tecnologia-informacao-dados}
 
 % ============================================================
 % PARTE IV — COMUNICAÇÃO, SUSTENTABILIDADE E GOVERNANÇA
@@ -311,13 +425,13 @@ Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, ve
 \part{Comunicação, Sustentabilidade e Governança}
 
 % Capítulo 10
-\input{../03-capitulos/10-comunicacao-stakeholders}
+\input{../03-capitulos-tex/10-comunicacao-stakeholders}
 
 % Capítulo 11
-\input{../03-capitulos/11-sustentabilidade-esg}
+\input{../03-capitulos-tex/11-sustentabilidade-esg}
 
 % Capítulo 12
-\input{../03-capitulos/12-compliance-governanca}
+\input{../03-capitulos-tex/12-compliance-governanca}
 
 % ============================================================
 % PARTE V — NOVOS HORIZONTES: RISCOS E TRANSFORMAÇÃO DIGITAL
@@ -325,17 +439,17 @@ Em todas as etapas, o autor manteve o controle intelectual sobre o conteúdo, ve
 \part{Novos Horizontes: Riscos e Transformação Digital}
 
 % Capítulo 13
-\input{../03-capitulos/13-gestao-riscos-corporativos}
+\input{../03-capitulos-tex/13-gestao-riscos-corporativos}
 
 % Capítulo 14
-\input{../03-capitulos/14-transformacao-digital-ia}
+\input{../03-capitulos-tex/14-transformacao-digital-ia}
 
 % Considerações finais
 \input{../02-textos-transversais/consideracoes-finais}
 \newpage
 
-% Referências bibliográficas
-\bibliography{../04-producao/referencias}
+% Referências bibliográficas consolidadas
+\bibliography{referencias}
 
 % Glossário
 \input{../02-textos-transversais/glossario}
